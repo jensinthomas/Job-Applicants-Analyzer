@@ -122,6 +122,7 @@ def prediction_result(aplcnt_name, personality_values):
     return personality
 
 
+@login_required(login_url='login_page')
 def new(request, id):
 
     jb = job.objects.filter(jobid=id).first()
@@ -256,10 +257,12 @@ def new(request, id):
             return redirect('thankyou')
 
 
+@login_required(login_url='login_page')
 def home(request, jobid):
     return render(request, jobid, 'main.html')
 
 
+@login_required(login_url='adlogin_page')
 def adminhome(request):
     user = User.objects.all()
     user = request.user.username
@@ -268,6 +271,7 @@ def adminhome(request):
     return render(request, 'adminhome.html', {'user': user, 'form': form})
 
 
+@login_required(login_url='login_page')
 def thankyou(request):
     return render(request, 'thankyou.html')
 
@@ -352,11 +356,13 @@ def aboutus(request):
     return render(request, 'aboutus.html')
 
 
+@login_required(login_url='login_page')
 def availablejobs(request):
     form = job.objects.all()
     return render(request, 'availablejobs.html', {'form': form})
 
 
+@login_required(login_url='login_page')
 def apply(request, id):
     jb = job.objects.get(jobid=id)
     return render(request, 'main.html', {'jb': jb})
@@ -366,10 +372,12 @@ def gallery(request):
     return render(request, 'gallery.html')
 
 
+@login_required(login_url='adlogin_page')
 def addjob(request):
     return render(request, 'addnewjob.html')
 
 
+@login_required(login_url='adlogin_page')
 def newjob(request):
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
@@ -383,41 +391,48 @@ def newjob(request):
     })
 
 
+@login_required(login_url='adlogin_page')
 def viewapplicants(request):
     resumes = Resume.objects.all()
     return render(request, 'viewapplicants.html', {'resumes': resumes})
 
 
+@login_required(login_url='adlogin_page')
 def pyresults(request):
     resumes = Resume.objects.filter(
         jobs='Python Developer') & Resume.objects.filter(short=1)
     return render(request, 'results.html', {'resumes': resumes})
 
 
+@login_required(login_url='adlogin_page')
 def jvresults(request):
     resumes = Resume.objects.filter(
         jobs='Java Developer') & Resume.objects.filter(short=1)
     return render(request, 'results.html', {'resumes': resumes})
 
 
+@login_required(login_url='adlogin_page')
 def trresults(request):
     resumes = Resume.objects.filter(
         jobs='Trainer') & Resume.objects.filter(short=1)
     return render(request, 'results.html', {'resumes': resumes})
 
 
+@login_required(login_url='adlogin_page')
 def teresults(request):
     resumes = Resume.objects.filter(
         jobs='Technician') & Resume.objects.filter(short=1)
     return render(request, 'results.html', {'resumes': resumes})
 
 
+@login_required(login_url='adlogin_page')
 def hrresults(request):
     resumes = Resume.objects.filter(
         jobs='HR Excecutive') & Resume.objects.filter(short=1)
     return render(request, 'results.html', {'resumes': resumes})
 
 
+@login_required(login_url='adlogin_page')
 def manresults(request):
     resumes = Resume.objects.filter(
         jobs='Sales Manager') & Resume.objects.filter(short=1)
