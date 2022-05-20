@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <style>
+    body {
+      background-image: url('https://c1.wallpaperflare.com/preview/22/192/837/background-blur-bright-close-up.jpg');
+      background-repeat: no-repeat;
+  background-size: cover;
+      }
+      
+</style>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Applicants</title>
+    
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <center>
+      <br />
+      <h2>Registered Applicants</h2>
+    </center>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <table class="sortable table table-bordered table-striped table-responsive table-light table-hover table-sm" id="selectedColumn">
+            <thead class="thead-dark"> 
+              <tr>
+                <th class="no-sort">#</th>
+                <th class="no-sort">Name</th>
+                <th class="no-sort">Age</th>
+                <th class="no-sort">Email</th>
+                <th class="no-sort">Mobile Number</th>
+                <th class="no-sort">Skills</th>
+                <th class="no-sort">Job Applied</th>
+                <th class="no-sort">Personality</th>
+                <th class="no-sort">Resume Matching(%)</th>
+              </tr>
+            </thead>
+            {% csrf_token %}
+
+            <tbody>
+              {% for resume in resumes  %}
+                <tr>
+                  <td>{{forloop.counter}}</td>
+                  <td>{{resume.fullname}}</td>
+                  <td>{{resume.age}}</td>
+                  <td>{{resume.email}}</td>
+                  <td>{{resume.mobile_number}}</td>
+                  <td>{{resume.skills}}</td>
+                  <td>{{resume.jobs}}</td>
+                  <td>{{resume.p}}</td>
+                  <td>{{resume.matchpercentage}}</td>
+                  
+                  {% comment %} <td><a href="{{ resume.resume.url }}" target="_blank">{{ resume.resume.url }}</a></td> {% endcomment %}
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+     <a href="adminhome"> <button class="btn-primary">Back</button></a>
+    </div>
+  </body>
+  </html>
+
+  <script>
+    document.addEventListener('click', function (e) {
+      try {
+        // allows for elements inside TH
+        function findElementRecursive(element, tag) {
+          return element.nodeName === tag ? element : findElementRecursive(element.parentNode, tag)
+        }
+    
+        var down_class = ' dir-d '
+        var up_class = ' dir-u '
+        var regex_dir = / dir-(u|d) /
+        var regex_table = /\bsortable\b/
+        var alt_sort = e.shiftKey || e.altKey
+        var element = findElementRecursive(e.target, 'TH')
+        var tr = findElementRecursive(element, 'TR')
+        var table = findElementRecursive(tr, 'TABLE')
+    
+        function reClassify(element, dir) {
+          element.className = element.className.replace(regex_dir, '') + dir
+        }
+    
+        function getValue(element) {
+          // If you aren't using data-sort and want to make it just the tiniest bit smaller/faster
+          // comment this line and uncomment the next one
+          return (
+            (alt_sort && element.getAttribute('data-sort-alt')) || element.getAttribute('data-sort') || element.innerText
+          )
+          // return element.innerText
+        }
+        if (regex_table.test(table.className)) {
+          var column_index
+          var nodes = tr.cells
+    
+          // reset thead cells and get column index
+          for (var i = 0; i < nodes.length; i++) {
+            if (nodes[i] === element) {
+              column_index = i
+            } else {
+              reClassify(nodes[i], '')
+            }
+          }
+    
+          var dir = down_class
+    
+          // check if we're sorting up or down, and update the css accordingly
+          if (element.className.indexOf(down_class) !== -1) {
+            dir = up_class
+          }
+    
+          reClassify(element, dir)
+    
+          // extract all table rows, so the sorting can start.
+          var org_tbody = table.tBodies[0]
+    
+          // get the array rows in an array, so we can sort them...
+          var rows = [].slice.call(org_tbody.rows, 0)
+    
+          var reverse = dir === up_class
+    
+          // sort them using custom built in array sort.
+          rows.sort(function (a, b) {
+            var x = getValue((reverse ? a : b).cells[column_index])
+            var y = getValue((reverse ? b : a).cells[column_index])
+            return isNaN(x - y) ? x.localeCompare(y) : x - y
+          })
+    
+          // Make a clone without content
+          var clone_tbody = org_tbody.cloneNode()
+    
+          // Build a sorted table body and replace the old one.
+          while (rows.length) {
+            clone_tbody.appendChild(rows.splice(0, 1)[0])
+          }
+    
+          // And finally insert the end result
+          table.replaceChild(clone_tbody, org_tbody)
+        }
+      } catch (error) {
+        // console.log(error)
+      }
+    })
+    
+  </script>

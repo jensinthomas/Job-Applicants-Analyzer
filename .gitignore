@@ -1,0 +1,4 @@
+/.DS_Store
+/Dockerfile
+/cli.py
+/db.sqlite3

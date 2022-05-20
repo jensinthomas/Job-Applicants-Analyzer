@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <style>
+    body {
+        background-image: url('https://c1.wallpaperflare.com/preview/22/192/837/background-blur-bright-close-up.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+      }
+</style>
+  <head>
+
+    <title>Dashboard</title>
+    
+<!-- CSS only -->
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+
+
+
+
+<body>
+  <nav class="navbar-inverse">
+    <div class="container-fluid">
+      <ul class="nav navbar-nav">
+        <li><a href="addjob">Add New Job</a></li>
+        <li><a href="viewapplicants">View Registered Applicants</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+  <center>
+    <br>
+    {% for msg in messages %}
+        <script>
+            window.onload = function(){
+                alert('{{msg}}')
+            }
+        </script>
+    {% endfor %}
+    <br>
+  </center>
+
+    <center> <h1>Welcome {{ user }}</h1></center>
+   
+      <center>
+        <br />
+        <h2>Current Job Openings</h2>
+      </center>
+
+
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <center>
+            <table  class="table table-bordered thead-dark" id="selectedColumn" >
+              <thead class="table thead-dark"> 
+                <tr >
+                  <th class="no-sort">  Job.No</th>
+                  <th class="no-sort">Job ID</th>
+                  <th >Job Added On</th>
+                  <th class="no-sort">Job Position</th>
+                  <th class="no-sort">Job Location</th>
+                  <th class="no-sort">Shortlisted Applicants</th>
+                </tr>
+              </thead>
+              {% csrf_token %}
+  
+              <tbody class="table-primary" >
+                {% for i in form %}
+                  <tr>
+                    <td>  {{forloop.counter}}  </td>
+                    <td>  {{i.jobid}}  </td>
+                    <td>  {{i.jobdate}}  </td>
+                    <td>  {{i.jobrole}}  </td>
+                    <td>  {{i.joblocation}}  </td>
+                    <td>
+                    {% if i.jobrole == "Python Developer" %}
+                    <center><a href="{% url "pyresults" %}" class="btn btn-primary btn-sm" type="submit">View </a></center>
+                    {% elif  i.jobrole == "HR Excecutive" %}
+                    <center><a href="{% url "hrresults" %}" class="btn btn-primary btn-sm" type="submit">View </a></center>
+                    {% elif  i.jobrole == "Java Developer" %}
+                    <center><a href="{% url "jvresults" %}" class="btn btn-primary btn-sm" type="submit">View </a></center>
+                    {% elif  i.jobrole == "Trainer" %}
+                    <center><a href="{% url "trresults" %}" class="btn btn-primary btn-sm" type="submit">View </a></center>
+                    {% elif  i.jobrole == "Technician" %}
+                    <center><a href="{% url "teresults" %}" class="btn btn-primary btn-sm" type="submit">View </a></center>
+                    {% elif  i.jobrole == "Sales Manager" %}
+                    <center><a href="{% url "manresults" %}" class="btn btn-primary btn-sm" type="submit">View </a></center>
+                    {% endif %}
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </center>
+          </div>
+      </div>
+      </body>
+      
+  </html>
+
+
+  <script>
+    document.addEventListener('click', function (e) {
+      try {
+        // allows for elements inside TH
+        function findElementRecursive(element, tag) {
+          return element.nodeName === tag ? element : findElementRecursive(element.parentNode, tag)
+        }
+    
+        var down_class = ' dir-d '
+        var up_class = ' dir-u '
+        var regex_dir = / dir-(u|d) /
+        var regex_table = /\bsortable\b/
+        var alt_sort = e.shiftKey || e.altKey
+        var element = findElementRecursive(e.target, 'TH')
+        var tr = findElementRecursive(element, 'TR')
+        var table = findElementRecursive(tr, 'TABLE')
+    
+        function reClassify(element, dir) {
+          element.className = element.className.replace(regex_dir, '') + dir
+        }
+    
+        function getValue(element) {
+          // If you aren't using data-sort and want to make it just the tiniest bit smaller/faster
+          // comment this line and uncomment the next one
+          return (
+            (alt_sort && element.getAttribute('data-sort-alt')) || element.getAttribute('data-sort') || element.innerText
+          )
+          // return element.innerText
+        }
+        if (regex_table.test(table.className)) {
+          var column_index
+          var nodes = tr.cells
+    
+          // reset thead cells and get column index
+          for (var i = 0; i < nodes.length; i++) {
+            if (nodes[i] === element) {
+              column_index = i
+            } else {
+              reClassify(nodes[i], '')
+            }
+          }
+    
+          var dir = down_class
+    
+          // check if we're sorting up or down, and update the css accordingly
+          if (element.className.indexOf(down_class) !== -1) {
+            dir = up_class
+          }
+    
+          reClassify(element, dir)
+    
+          // extract all table rows, so the sorting can start.
+          var org_tbody = table.tBodies[0]
+    
+          // get the array rows in an array, so we can sort them...
+          var rows = [].slice.call(org_tbody.rows, 0)
+    
+          var reverse = dir === up_class
+    
+          // sort them using custom built in array sort.
+          rows.sort(function (a, b) {
+            var x = getValue((reverse ? a : b).cells[column_index])
+            var y = getValue((reverse ? b : a).cells[column_index])
+            return isNaN(x - y) ? x.localeCompare(y) : x - y
+          })
+    
+          // Make a clone without content
+          var clone_tbody = org_tbody.cloneNode()
+    
+          // Build a sorted table body and replace the old one.
+          while (rows.length) {
+            clone_tbody.appendChild(rows.splice(0, 1)[0])
+          }
+    
+          // And finally insert the end result
+          table.replaceChild(clone_tbody, org_tbody)
+        }
+      } catch (error) {
+        // console.log(error)
+      }
+    })
+    
+  </script>

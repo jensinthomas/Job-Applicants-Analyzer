@@ -1,0 +1,171 @@
+<!doctype html>
+{% load static %}
+{% load active %}
+{% load crispy_forms_tags %}
+<style>
+  body {
+      background-image: url('https://img.freepik.com/free-photo/creative-flat-lay-design-workspace-desk-with-laptop-alarm-clock-blank-notebook-smartphone-stationery-with-copy-space-background_1150-45600.jpg?w=2000');
+      background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+    }
+    
+</style>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Facebook Cards -->
+    <meta property="og:description" content="A fun project to store my learning from each book that I read"/>
+    <meta property="og:url" content=""/>
+    <meta property="og:image" content="{% static 'images/logomark.png' %}"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:site_name" content="Bookworm"/>
+
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@omkarpathak27">
+    <meta name="twitter:creator" content="Omkar Pathak">
+    <meta name="twitter:title" content= "Bookworm">
+    <meta name="twitter:description" content="A fun project to store my learning from each book that I read">
+    <meta name="twitter:creator" content="Omkar Pathak">
+    <meta name="twitter:image:src" content="{% static 'images/logomark.png' %}">
+    <meta name="twitter:domain" content="https://www.omkarpathak.in">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <link rel="shortcut icon" href="{% static 'images/logomarkv2.ico' %}">
+    <title>{% block title %}{% endblock %}</title>
+  </head>
+  <body style="font-family: 'Poppins', sans-serif;">
+    {% include 'navbar.html' %}
+
+    <div class="container-fluid">
+      {% include 'messages.html' %}
+    
+      {% if form %}
+      <div class="row">
+        <div class="col-lg-5 col-md-5"></div>
+        <div class="col-lg-6 col-md-6">
+          <form method="POST" enctype="multipart/form-data" action="{% url 'homepage' %}" style="margin-top: 2%; margin-bottom: 3%">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" id="import" name="import" class="btn btn-success" style="margin-top: 2%; border-radius: 0">Upload</button>
+          </form>
+        </div>
+      </div>
+      {% elif resumes %}
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <a href="{% url 'homepage' %}">
+              <button class="btn btn-success" style="margin-bottom: 10px; border-radius: 0;">Upload More</button>
+            </a>
+        </div>
+      </div>
+      </div>
+      {% endif %}
+    </div>
+  
+  </body>
+</html>
+
+{% comment %} <script>
+  function sortTable() {
+    var table, rows, switching, i, x, y, shouldSwitch;
+    table = document.getElementById("myTable");
+    switching = true;
+    while (switching) {
+      switching = false;
+      rows = table.rows;
+       for (i = 1; i < (rows.length - 1); i++) {
+        shouldSwitch = false;
+        x = rows[i].getElementsByTagName("TD")[0];
+        y = rows[i + 1].getElementsByTagName("TD")[0];
+        if (Number(x.innerHTML) > Number(y.innerHTML)) {
+          shouldSwitch = true;
+          break;
+        }
+      }
+      if (shouldSwitch) {
+        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+        switching = true;
+      }
+    }
+  }
+  </script> {% endcomment %}
+  <script>
+
+    document.addEventListener('click', function (e) {
+      try {
+        // allows for elements inside TH
+        function findElementRecursive(element, tag) {
+          return element.nodeName === tag ? element : findElementRecursive(element.parentNode, tag)
+        }
+    
+        var down_class = ' dir-d '
+        var up_class = ' dir-u '
+        var regex_dir = / dir-(u|d) /
+        var regex_table = /\bsortable\b/
+        var alt_sort = e.shiftKey || e.altKey
+        var element = findElementRecursive(e.target, 'TH')
+        var tr = findElementRecursive(element, 'TR')
+        var table = findElementRecursive(tr, 'TABLE')
+    
+        function reClassify(element, dir) {
+          element.className = element.className.replace(regex_dir, '') + dir
+        }
+    
+        function getValue(element) {
+     
+          return (
+            (alt_sort && element.getAttribute('data-sort-alt')) || element.getAttribute('data-sort') || element.innerText
+          )
+        }
+        if (regex_table.test(table.className)) {
+          var column_index
+          var nodes = tr.cells
+    
+          for (var i = 0; i < nodes.length; i++) {
+            if (nodes[i] === element) {
+              column_index = i
+            } else {
+              reClassify(nodes[i], '')
+            }
+          }
+    
+          var dir = down_class
+    
+          if (element.className.indexOf(down_class) !== -1) {
+            dir = up_class
+          }
+    
+          reClassify(element, dir)
+    
+          var org_tbody = table.tBodies[0]
+    
+          var rows = [].slice.call(org_tbody.rows, 0)
+    
+          var reverse = dir === up_class
+              rows.sort(function (a, b) {
+            var x = getValue((reverse ? a : b).cells[column_index])
+            var y = getValue((reverse ? b : a).cells[column_index])
+            return isNaN(x - y) ? x.localeCompare(y) : x - y
+          })
+              var clone_tbody = org_tbody.cloneNode()
+              while (rows.length) {
+            clone_tbody.appendChild(rows.splice(0, 1)[0])
+          }
+          table.replaceChild(clone_tbody, org_tbody)
+        }
+      } catch (error) {
+      }
+    })
+    
+  </script>

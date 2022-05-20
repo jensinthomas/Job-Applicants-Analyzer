@@ -1,0 +1,59 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<title>Resume Analyser</title>
+<style>
+    body {
+        background-image: url('https://img.freepik.com/free-photo/creative-flat-lay-design-workspace-desk-with-laptop-alarm-clock-blank-notebook-smartphone-stationery-with-copy-space-background_1150-45600.jpg?w=2000');
+        background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+      }
+</style>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <ul class="nav navbar-nav">
+            <li><a href="aboutus">About Us</a></li>
+            <li><a href="gallery">Gallery</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="signuppage"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a href="login_page"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+            <li><a href="adlogin_page"><span class="glyphicon glyphicon-log-in"></span>Admin Login</a></li>
+          </ul>
+        </div>
+      </nav>
+      <center>
+        <br>
+        {% for msg in messages %}
+        <script>
+            window.onload = function(){
+                alert('{{msg}}')
+            }
+        </script>
+    {% endfor %} <br>
+      </center>
+
+      <center><br>
+        <div class="w3-container">
+            <div class="w3-card-4" style="width:50%;">
+                <header class="w3-container w3-grey">
+                  <h1>Interested to join our team?</h1>
+                </header>
+                <div class="w3-container"><br>
+                  <p style="font-size:20px;">We enable career success by providing opportunities to thrive. We foster an inclusive workforce and embrace a shared set of core values based on character, competitive spirit, relationships, and giving back to the communities where we live and work.</p>
+                  <p style="font-size:20px;">To join our recruitment pool please Signup and complete our short Personality test</p>
+                </div>
+                <footer class="w3-container w3-hover-shadow w3-blue">
+                    <a href="login_page"><h3>Continue</h3></a>
+                </footer>
+                
+                </div>
+            </div>
+      </center>
+    
+</body>

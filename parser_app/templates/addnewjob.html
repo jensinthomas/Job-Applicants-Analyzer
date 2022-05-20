@@ -1,0 +1,143 @@
+<!doctype html>
+{% load static %}
+{% load active %}
+{% load crispy_forms_tags %}<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  body {
+    background-image: url('https://c1.wallpaperflare.com/preview/22/192/837/background-blur-bright-close-up.jpg');
+background-repeat: no-repeat;
+background-size: cover;
+  }
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Facebook Cards -->
+<meta property="og:description" content="A fun project to store my learning from each book that I read"/>
+<meta property="og:url" content=""/>
+<meta property="og:image" content="{% static 'images/logomark.png' %}"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="Bookworm"/>
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@omkarpathak27">
+<meta name="twitter:creator" content="Omkar Pathak">
+<meta name="twitter:title" content= "Bookworm">
+<meta name="twitter:description" content="A fun project to store my learning from each book that I read">
+<meta name="twitter:creator" content="Omkar Pathak">
+<meta name="twitter:image:src" content="{% static 'images/logomark.png' %}">
+<meta name="twitter:domain" content="https://www.omkarpathak.in">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" type="text/css" media="all" />
+<link rel="stylesheet" href="{% static 'css/custom.css' %}">
+<link rel="shortcut icon" href="{% static 'images/logomarkv2.ico' %}">
+<title>New Job</title>
+
+</head>
+{% for msg in messages %}
+        <script>
+            window.onload = function(){
+                alert('{{msg}}')
+            }
+        </script>
+    {% endfor %}
+    <body>
+
+      <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+    
+            </div>
+            <div class="col-md-6 mt-3">
+                <div class="card p-3">
+                  <form action="newjob" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                        <div class="row">
+    
+                            <div class="col-md-12 mt-3">
+                                <center>                <h2>New Job Vaccancy</h>
+                                </center><br>
+                            </div>
+                            
+                            <div class="col-md-12 mt-3">
+                              <label for="">Job ID: </label>
+                              <input type="text" name="jobid" class="form-control" required />
+                            </div>
+                
+                            <div class="col-md-12 mt-3">
+                              <label for="">Job Name: </label>
+                              <select class="form-select" for="jobrole"name="jobrole" required >
+                                <option value="Python Developer">Python Developer</option>
+                                <option  value="Java Developer">Java Developer</option>
+                                <option  value="Sales Manager">Sales Manager</option>
+                                <option  value="HR Excecutive">HR Excecutive</option>
+                                <option  value="Trainer">Trainer</option>
+                                <option  value="Technician">Technician</option>
+                              </select>    
+                            </div>
+                            <div class="col-md-12 mt-3">
+                              <label>Job Creation Date:</label>
+                              <input type="date" id="date" name="jobdate" required/>
+                            </div>
+                            <div class="col-md-12 mt-3">
+                              <label>Experience:</label>
+                              <input type="number"  name="jobexp" required/>
+                            </div>
+                            <div class="col-md-12 mt-3">
+                              <label for="">Job Location: </label>
+                              <select class="form-select" for="joblocation"name="joblocation" required >
+                                  <option value="Bangalore">Bangalore</option>
+                                  <option  value="Chennai">Chennai</option>
+                                  <option  value="Pune">Pune</option>
+                                  <option  value="Kochi">Kochi</option>
+                                  <option  value="Hyderabad">Hyderabad</option>
+                                </select>                                            
+                            </div>
+                             <div class="col-md-12 mt-3">
+                              <label for="">Job Personality 1: </label>
+                              <select class="form-select" for="p1" name="p1" required >
+                                <option value="Dependable">Dependable</option>
+                                <option  value="Serious">Serious</option>
+                                <option  value="Responsible">Responsible</option>
+                                <option  value="Lively">Lively</option>
+                                <option  value="Extraverted">Extraverted</option>
+                              </select>
+                            </div>
+                            <div class="col-md-12 mt-3">
+                              <label for="">Job Personality 2: </label>
+                              <select class="form-select" for="p2" name="p2" required >
+                                  <option value="Dependable">Dependable</option>
+                                  <option  value="Serious">Serious</option>
+                                  <option  value="Responsible">Responsible</option>
+                                  <option  value="Lively">Lively</option>
+                                  <option  value="Extraverted">Extraverted</option>
+                                </select>
+                            </div> 
+                            <div class="col-md-12 mt-3">
+                              <label for="">Upload Description: </label>
+                              <input type="file"  name="jobdescription" required /> <br /><br />
+                            </div>
+                            <div class="col-md-12 mb-3 mt-3">
+                              <button type="submit" class="btn btn-primary w-100" onclick="check()">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-3">
+              <a href="adminhome"> <button class="btn-primary">Back</button></a>
+
+            </div>
+        </div>
+    </div>
+  
+  
+    </body>
+    </html>
