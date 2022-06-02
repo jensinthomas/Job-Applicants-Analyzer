@@ -122,7 +122,6 @@ def prediction_result(aplcnt_name, personality_values):
     return personality
 
 
-@login_required(login_url='login_page')
 def new(request, id):
 
     jb = job.objects.filter(jobid=id).first()
@@ -217,10 +216,12 @@ def new(request, id):
             resume.qei = int((int(resume.qe1)+int(resume.qe2) +
                               int(resume.qe3)+int(resume.qe4))/2.86)
             model = train_model()
-            exp = request.POST['exp']
+            
+            expr = request.POST['expr']
             p1 = request.POST['p1']
             p2 = request.POST['p2']
-            expper = int((int(resume.exp)/int(exp))*100)
+
+            # expper = int((int(resume.exp)/int(exp))*100)
             p = model.train(resume.qoi, resume.qni, resume.qci,
                             resume.qai, resume.qei, resume.age, resume.gender)
 
@@ -239,16 +240,17 @@ def new(request, id):
             elif p == ['extraverted']:
                 resume.p = "Extraverted"
 
-            if resume.p == p1 or resume.p == p2:
-                resume.short = 1
+            if resume.exp >= expr:
+                if resume.p == p1 or resume.p == p2:
+                    resume.short = 1
 
-            if expper >= 100:
-                expper = 100
+            # if expper >= 100:
+            #     expper = 100
 
-            print(expper)
+            # print(expper)
 
             resume.matching = int(int((int(resume.qoi)+int(resume.qni)+int(resume.qci)+int(
-                resume.qai)+int(resume.qei)) + int(resume.matchpercentage)+int(expper))/3)
+                resume.qai)+int(resume.qei)) + int(resume.matchpercentage))/2)
             if resume.matching >= 100:
                 resume.matching = 100
 
@@ -257,7 +259,6 @@ def new(request, id):
             return redirect('thankyou')
 
 
-@login_required(login_url='login_page')
 def home(request, jobid):
     return render(request, jobid, 'main.html')
 
@@ -271,7 +272,6 @@ def adminhome(request):
     return render(request, 'adminhome.html', {'user': user, 'form': form})
 
 
-@login_required(login_url='login_page')
 def thankyou(request):
     return render(request, 'thankyou.html')
 
@@ -356,13 +356,11 @@ def aboutus(request):
     return render(request, 'aboutus.html')
 
 
-@login_required(login_url='login_page')
 def availablejobs(request):
     form = job.objects.all()
     return render(request, 'availablejobs.html', {'form': form})
 
 
-@login_required(login_url='login_page')
 def apply(request, id):
     jb = job.objects.get(jobid=id)
     return render(request, 'main.html', {'jb': jb})
