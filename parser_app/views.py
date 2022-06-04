@@ -21,7 +21,7 @@ from sklearn import linear_model
 from sklearn.tree import export_graphviz
 from sklearn.tree import DecisionTreeClassifier
 from sklearn import linear_model
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, confusion_matrix
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, FileResponse, Http404
 import os.path
@@ -29,7 +29,6 @@ import shutil
 from sys import argv
 import docx2txt
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 class train_model:
 
@@ -83,6 +82,9 @@ class train_model:
         y_pred_dt
         dt_score = dt2.score(X_test, y_test)
         print(f"Decision Tree Classifier Accuracy score is {dt_score}")
+        cm=confusion_matrix(y_test, y_test)
+        normed_c = (cm.T / cm.astype(np.float).sum(axis=1)).T
+        print("confusion matrix", normed_c)
         print(dt_score)
         dot_data = export_graphviz(dt2, out_file=None)
         print(dot_data)
@@ -103,17 +105,12 @@ class train_model:
         except:
             print("All Factors For Finding Personality Not Entered!")
 
-
 def prediction_result(aplcnt_name, personality_values):
     "after applying a job"
-    applicant_data = {"Candidate Name": aplcnt_name,
-                      }
-
+    applicant_data = {"Candidate Name": aplcnt_name,}
     age = personality_values[1]
-
     print("\n Candidate Entered Data \n")
     print(personality_values)
-
     personality = train_model()
     personality.test(personality_values)
     personality = train_model.test(personality_values)
@@ -162,8 +159,7 @@ def new(request, id):
             else:
                 resume.experience = None
             jobsss = request.POST.get('jobsss')
-            jobss = docx2txt.process(os.path.join(settings.MEDIA_ROOT,
-                                                  jobsss))
+            jobss = docx2txt.process(os.path.join(settings.MEDIA_ROOT,jobsss))
 
             resume.res = docx2txt.process(
                 os.path.join(
