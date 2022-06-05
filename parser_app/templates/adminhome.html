@@ -1,193 +1,236 @@
 <!DOCTYPE html>
-<html lang="en">
-  <style>
-    body {
-        background-image: url('https://c1.wallpaperflare.com/preview/22/192/837/background-blur-bright-close-up.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-      }
-</style>
-  <head>
+<html>
 
-    <title>Dashboard</title>
-    
-<!-- CSS only -->
-<!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  </head>
-
-
-
-
+<!-- Mirrored from creativelayers.net/themes/jobhunt-html/index8.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 03 Jun 2022 15:43:34 GMT -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Job Hunt</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="author" content="pc" >
+  {% load static %}
+	<!-- Styles -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-grid.css'%}" />
+	<link rel="stylesheet" href="{% static 'css/icons.css'%}">
+	<link rel="stylesheet" href="{% static 'css/animate.min.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/responsive.css'%}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/chosen.css'%}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/colors/colors.css'%}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css'%}" />
+<link rel="stylesheet" href="{% static '../../../maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'%}" />
+	
+</head>
 <body>
-  <nav class="navbar-inverse">
-    <div class="container-fluid">
-      <ul class="nav navbar-nav">
-        <li><a href="addjob">Add New Job</a></li>
-        <li><a href="viewapplicants">View Registered Applicants</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-      </ul>
-    </div>
-  </nav>
-  <center>
-    <br>
-    {% for msg in messages %}
-        <script>
-            window.onload = function(){
-                alert('{{msg}}')
-            }
-        </script>
-    {% endfor %}
-    <br>
-  </center>
 
-    <center> <h1>Welcome {{ user }}</h1></center>
-   
-      <center>
-        <br />
-        <h2>Current Job Openings</h2>
-      </center>
+<div class="page-loading">
+	<img src="images/loader.gif" alt="" />
+	<span>Skip Loader</span>
+</div>
+
+<div class="theme-layout" id="scrollup">
+	
+	<div class="responsive-header five">
+		<div class="responsive-menubar">
+			<div class="res-logo"><a href="index.html" title=""><img src="{% static 'images/resource/logo8.png'%}" alt="" /></a></div>
+			<div class="menu-resaction">
+				<div class="res-openmenu">
+					<img src="{% static 'images/icon.png'%}" alt="" /> Menu
+				</div>
+				<div class="res-closemenu">
+					<img src="{% static 'images/icon2.png'%}" alt="" /> Close
+				</div>
+			</div>
+		</div>
+		<div class="responsive-opensec">
+			<div class="btn-extars">
+				<a href="#" title="" class="post-job-btn"><i class="la la-plus"></i>Post Jobs</a>
+				<ul class="account-btns">
+					<li class="signup-popup"><a title=""><i class="la la-key"></i> Sign Up</a></li>
+					<li class="signin-popup"><a title=""><i class="la la-external-link-square"></i> Login</a></li>
+				</ul>
+			</div><!-- Btn Extras -->
+			<form class="res-search">
+				<input type="text" placeholder="Job title, keywords or company name" />
+				<button type="submit"><i class="la la-search"></i></button>
+			</form>
+			<div class="responsivemenu">
+				<ul>
+          
+          <li class="menu-item">
+            <a href="addjob" title="">Add new Job</a>
+          </li>
+          
+        </ul>
+			</div>
+		</div>
+	</div>
+	
+	<header class="style5">
+		<div class="menu-sec">
+			<div class="container fluid">
+				<nav>
+					<ul>
+						<li class="menu-item">
+              <a href="addjob" title="">Add new Job</a>
+            </li>
+						
+					</ul>
+				</nav><!-- Menus -->
+				<div class="logo">
+					<a href="index.html" title=""><img src="{% static 'images/resource/logo8.png'%}" alt="" /></a>
+				</div><!-- Logo -->
+				<div class="btn-extars">
+					<ul class="account-btns">
+            <li class="signout-popup"><a href="logout"><i class="la la-external-link-square"></i> Logout</a></li>
+
+						</ul>
+				</div><!-- Btn Extras -->
+			</div>
+		</div>
+	</header>
+
+	<section class="overlape">
+		<div class="block no-padding">
+			<div data-velocity="-.1" style="background: url({% static 'images/resource/mslider1.jpg'%}) repeat scroll 20% 100px transparent;" class="parallax scrolly-invisible no-parallax"></div><!-- PARALLAX BACKGROUND IMAGE -->
+			<div class="container fluid">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="inner-header wform">
+							<div class="job-search-sec">
+								<div class="job-search">
+									<h4>Welcome {{ user }}</h4><br>
+									<br><h4>List of Shortlisted Candidates</h4>
+
+								</div><!-- Tags Bar -->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<div class="block remove-top">
+			<div class="container">
+				 <div class="row no-gape">
+				 	<aside class="col-lg-12 column">
+						{% csrf_token %}
+						{% for i in form %}
+
+						 <div class="job-list-modern">
+                <div class="job-listings-sec no-border">
+								<div class="job-listing wtabs">
+									<div class="job-title-sec">
+										<div class="c-logo"></div>
+										<h3><a href="#" title="">{{i.jobrole}}</a></h3>
+										<span>Experience Required: {{i.jobexp}}</span>
+										<div class="job-lctn"><i class="la la-map-marker"></i>{{i.joblocation}}</div>
+										<span>Job Added On: {{i.jobdate}}</span>
+
+									</div>
+									<div class="job-style-bx">
+                    
+                    
+                      {% if i.jobrole == "Python Developer" %}
+                      <span class="job-is ft"><a href="{% url "pyresults" %}" class="btn" type="submit">View </a>
+                      {% elif  i.jobrole == "HR Excecutive" %}
+                      <span class="job-is ft"><a href="{% url "hrresults" %}" class="btn" type="submit">View </a>
+                      {% elif  i.jobrole == "Java Developer" %}
+                      <span class="job-is ft"><a href="{% url "jvresults" %}" class="btn" type="submit">View </a>
+                      {% elif  i.jobrole == "Trainer" %}
+                      <span class="job-is ft"><a href="{% url "trresults" %}" class="btn" type="submit">View </a>
+                      {% elif  i.jobrole == "Technician" %}
+                      <span class="job-is ft"><a href="{% url "teresults" %}" class="btn" type="submit">View </a>
+                      {% elif  i.jobrole == "Sales Manager" %}
+                      <span class="job-is ft"><a href="{% url "manresults" %}" class="btn" type="submit">View </a>
+                      {% endif %}
+                    
+                      <span class="fav-job"><i class="la la-heart-o"></i></span>
+										<i>Job ID: {{i.jobid}}</i>
+										
+										
+									</div>
+                  
+								</div>
+							</div>
+
+							
+						 </div>
+             {% endfor %}
+
+					 </div>
+				 </div>
+			</div>
+		</div>
+	</section>
+
+	<footer class="style3">
+		<div class="block">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-3 column">
+						<div class="widget">
+							<div class="about_widget">
+								<div class="logo">
+									<a href="#" title=""><img src="{% static 'images/resource/logo9.png'%}" alt="" /></a>
+								</div>
+								<span>JET, Thrissur 680000, India.</span>
+								<span>+1 246-345-0695</span>
+								<span>jet@jobhunt.com</span>
+								<div class="social">
+									<a href="#" title=""><i class="fa fa-facebook"></i></a>
+									<a href="#" title=""><i class="fa fa-twitter"></i></a>
+									<a href="#" title=""><i class="fa fa-linkedin"></i></a>
+									<a href="#" title=""><i class="fa fa-pinterest"></i></a>
+									<a href="#" title=""><i class="fa fa-behance"></i></a>
+								</div>
+                <div>
+                  
+                </div>
+							</div><!-- About Widget -->
+						</div>
+					</div>
+				
+					<div class="col-lg-3 column">
+						<div class="widget">
+							<div class="download_widget">
+								<a href="#" title=""><img src="{% static 'images/resource/di.png'%}" alt="" /></a>
+								<a href="#" title=""><img src="{% static 'images/resource/di2.png'%}" alt="" /></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="bottom-line style3">
+			<div class="container">
+				<span>© 2022 Jobhunt All rights reserved. Design by JET</span>
+				<a class="back-top" href="#scrollup" title=""><i class="la la-long-arrow-up"></i></a>
+			</div>
+		</div>
+	</footer>
+
+</div>
+
+<!-- LOGIN POPUP -->
 
 
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <center>
-            <table  class="table table-bordered thead-dark" id="selectedColumn" >
-              <thead class="table thead-dark"> 
-                <tr >
-                  <th class="no-sort">  Job.No</th>
-                  <th class="no-sort">Job ID</th>
-                  <th >Job Added On</th>
-                  <th class="no-sort">Job Position</th>
-                  <th class="no-sort">Job Location</th>
-                  <th class="no-sort">Shortlisted Applicants</th>
-                </tr>
-              </thead>
-              {% csrf_token %}
-  
-              <tbody class="table-primary" >
-                {% for i in form %}
-                  <tr>
-                    <td>  {{forloop.counter}}  </td>
-                    <td>  {{i.jobid}}  </td>
-                    <td>  {{i.jobdate}}  </td>
-                    <td>  {{i.jobrole}}  </td>
-                    <td>  {{i.joblocation}}  </td>
-                    <td>
-                    {% if i.jobrole == "Python Developer" %}
-                    <center><a href="{% url "pyresults" %}" class="btn btn-primary btn-sm" type="submit">View </a></center>
-                    {% elif  i.jobrole == "HR Excecutive" %}
-                    <center><a href="{% url "hrresults" %}" class="btn btn-primary btn-sm" type="submit">View </a></center>
-                    {% elif  i.jobrole == "Java Developer" %}
-                    <center><a href="{% url "jvresults" %}" class="btn btn-primary btn-sm" type="submit">View </a></center>
-                    {% elif  i.jobrole == "Trainer" %}
-                    <center><a href="{% url "trresults" %}" class="btn btn-primary btn-sm" type="submit">View </a></center>
-                    {% elif  i.jobrole == "Technician" %}
-                    <center><a href="{% url "teresults" %}" class="btn btn-primary btn-sm" type="submit">View </a></center>
-                    {% elif  i.jobrole == "Sales Manager" %}
-                    <center><a href="{% url "manresults" %}" class="btn btn-primary btn-sm" type="submit">View </a></center>
-                    {% endif %}
-                    </td>
-                  </tr>
-                {% endfor %}
-              </tbody>
-            </table>
-          </center>
-          </div>
-      </div>
-      </body>
-      
-  </html>
+<script src="{% static 'js/jquery.min.js'%}" type="text/javascript"></script>
+<script src="{% static 'js/modernizr.js'%}" type="text/javascript"></script>
+<script src="{% static 'js/script.js'%}" type="text/javascript"></script>
+<script src="{% static 'js/bootstrap.min.js'%}" type="text/javascript"></script>
+<script src="{% static 'js/wow.min.js'%}" type="text/javascript"></script>
+<script src="{% static 'js/slick.min.js'%}" type="text/javascript"></script>
+<script src="{% static 'js/parallax.js'%}" type="text/javascript"></script>
+<script src="{% static 'js/select-chosen.js'%}" type="text/javascript"></script>
+<script src="{% static 'js/counter.js'%}" type="text/javascript"></script>
 
+</body>
 
-  <script>
-    document.addEventListener('click', function (e) {
-      try {
-        // allows for elements inside TH
-        function findElementRecursive(element, tag) {
-          return element.nodeName === tag ? element : findElementRecursive(element.parentNode, tag)
-        }
-    
-        var down_class = ' dir-d '
-        var up_class = ' dir-u '
-        var regex_dir = / dir-(u|d) /
-        var regex_table = /\bsortable\b/
-        var alt_sort = e.shiftKey || e.altKey
-        var element = findElementRecursive(e.target, 'TH')
-        var tr = findElementRecursive(element, 'TR')
-        var table = findElementRecursive(tr, 'TABLE')
-    
-        function reClassify(element, dir) {
-          element.className = element.className.replace(regex_dir, '') + dir
-        }
-    
-        function getValue(element) {
-          // If you aren't using data-sort and want to make it just the tiniest bit smaller/faster
-          // comment this line and uncomment the next one
-          return (
-            (alt_sort && element.getAttribute('data-sort-alt')) || element.getAttribute('data-sort') || element.innerText
-          )
-          // return element.innerText
-        }
-        if (regex_table.test(table.className)) {
-          var column_index
-          var nodes = tr.cells
-    
-          // reset thead cells and get column index
-          for (var i = 0; i < nodes.length; i++) {
-            if (nodes[i] === element) {
-              column_index = i
-            } else {
-              reClassify(nodes[i], '')
-            }
-          }
-    
-          var dir = down_class
-    
-          // check if we're sorting up or down, and update the css accordingly
-          if (element.className.indexOf(down_class) !== -1) {
-            dir = up_class
-          }
-    
-          reClassify(element, dir)
-    
-          // extract all table rows, so the sorting can start.
-          var org_tbody = table.tBodies[0]
-    
-          // get the array rows in an array, so we can sort them...
-          var rows = [].slice.call(org_tbody.rows, 0)
-    
-          var reverse = dir === up_class
-    
-          // sort them using custom built in array sort.
-          rows.sort(function (a, b) {
-            var x = getValue((reverse ? a : b).cells[column_index])
-            var y = getValue((reverse ? b : a).cells[column_index])
-            return isNaN(x - y) ? x.localeCompare(y) : x - y
-          })
-    
-          // Make a clone without content
-          var clone_tbody = org_tbody.cloneNode()
-    
-          // Build a sorted table body and replace the old one.
-          while (rows.length) {
-            clone_tbody.appendChild(rows.splice(0, 1)[0])
-          }
-    
-          // And finally insert the end result
-          table.replaceChild(clone_tbody, org_tbody)
-        }
-      } catch (error) {
-        // console.log(error)
-      }
-    })
-    
-  </script>
+<!-- Mirrored from creativelayers.net/themes/jobhunt-html/index8.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 03 Jun 2022 15:44:06 GMT -->
+</html>
+

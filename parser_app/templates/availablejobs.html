@@ -1,63 +1,239 @@
 <!DOCTYPE html>
-<html lang="en">
-  <style>
-    body {
-        background-image: url('https://c0.wallpaperflare.com/preview/227/272/837/business-computer-desk-home-office.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-      }
-</style>
-  <head>
+<html>
 
-    <title>Jobs</title>
-    
-<!-- CSS only -->
-<!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  </head>
-  <body>
-    <center>
-      <br />
-      <h2>Available Job Openings</h2>
-    </center>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <center>
-          <table  class="table table-bordered thead-dark" id="selectedColumn" >
-            <thead class="table thead-dark"> 
-              <tr>
-                <th class="no-sort">#</th>
-                <th class="no-sort"> ID</th>
-                <th class="no-sort">Job Position</th>
-                <th class="no-sort"> Location</th>
-                <th class="no-sort"> Experience</th>
-                <th class="no-sort">Action</th>
-              </tr>
-            </thead>
-            {% csrf_token %}
+<!-- Mirrored from creativelayers.net/themes/jobhunt-html/index8.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 03 Jun 2022 15:43:34 GMT -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Job Hunt</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="author" content="pc" >
+  {% load static %}
+	<!-- Styles -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-grid.css'%}" />
+	<link rel="stylesheet" href="{% static 'css/icons.css'%}">
+	<link rel="stylesheet" href="{% static 'css/animate.min.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/responsive.css'%}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/chosen.css'%}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/colors/colors.css'%}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css'%}" />
+<link rel="stylesheet" href="{% static '../../../maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'%}" />
+	
+</head>
+<body>
 
-            <tbody class="table-primary" >
-              {% for i in form %}
-                <tr>
-                  <td>{{forloop.counter}}</td>
-                  <td>{{i.jobid}}</td>
-                  <td>{{i.jobrole}}</td>
-                  <td>{{i.joblocation}}</td>
-                  <td>{{i.jobexp}}</td>
-                  <td><a href="{% url 'apply' id=i.jobid %}" class="btn btn-info btn-sm" type="submit">Apply</a></td>
-                </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </center>
-        </div>
-     <a href="logout"> <button class="btn-primary">Back</button></a>
-    </div>
-  </body>
-  </html>
+<div class="page-loading">
+	<img src="images/loader.gif" alt="" />
+	<span>Skip Loader</span>
+</div>
+
+<div class="theme-layout" id="scrollup">
+	
+	<div class="responsive-header five">
+		<div class="responsive-menubar">
+			<div class="res-logo"><a href="index.html" title=""><img src="{% static 'images/resource/logo8.png'%}" alt="" /></a></div>
+			<div class="menu-resaction">
+				<div class="res-openmenu">
+					<img src="{% static 'images/icon.png'%}" alt="" /> Menu
+				</div>
+				<div class="res-closemenu">
+					<img src="{% static 'images/icon2.png'%}" alt="" /> Close
+				</div>
+			</div>
+		</div>
+		<div class="responsive-opensec">
+			<div class="btn-extars">
+				<a href="#" title="" class="post-job-btn"><i class="la la-plus"></i>Post Jobs</a>
+				<ul class="account-btns">
+					<li class="signup-popup"><a title=""><i class="la la-key"></i> Sign Up</a></li>
+					<li class="signin-popup"><a title=""><i class="la la-external-link-square"></i> Login</a></li>
+				</ul>
+			</div><!-- Btn Extras -->
+			<form class="res-search">
+				<input type="text" placeholder="Job title, keywords or company name" />
+				<button type="submit"><i class="la la-search"></i></button>
+			</form>
+			<div class="responsivemenu">
+				<ul>
+          <li class="menu-item">
+            <a href="mainhome" title="">Home</a>
+          
+          </li>
+          <li class="menu-item">
+            <a href="aboutus" title="">About Us</a>
+            
+          </li>
+          <li class="menu-item">
+            <a href="gallery" title="">Contact</a>
+            
+          </li>
+          <li class="menu-item">
+            <a href="login_page" title="">Job</a>
+            
+          </li>
+          
+        </ul>
+			</div>
+		</div>
+	</div>
+	
+	<header class="style5">
+		<div class="menu-sec">
+			<div class="container fluid">
+				<nav>
+					<ul>
+						<li class="menu-item">
+							<a href="mainhome" title="">Home</a>
+						
+						</li>
+						<li class="menu-item">
+							<a href="aboutus" title="">About Us</a>
+							
+						</li>
+						<li class="menu-item">
+							<a href="gallery" title="">Contact</a>
+							
+						</li>
+						<li class="menu-item">
+							<a href="login_page" title="">Job</a>
+							
+						</li>
+						
+					</ul>
+				</nav><!-- Menus -->
+				<div class="logo">
+					<a href="index.html" title=""><img src="{% static 'images/resource/logo8.png'%}" alt="" /></a>
+				</div><!-- Logo -->
+				<div class="btn-extars">
+					<ul class="account-btns">
+						<li class="signup-popup"><a href="signuppage"><i class="la la-key"></i> Sign Up</a></li>
+						<li class="signin-popup"><a href="login_page"><i class="la la-external-link-square"></i> Login</a></li>
+					</ul>
+				</div><!-- Btn Extras -->
+			</div>
+		</div>
+	</header>
+
+	<section class="overlape">
+		<div class="block no-padding">
+			<div data-velocity="-.1" style="background: url({% static 'images/resource/mslider1.jpg'%}) repeat scroll 20% 100px transparent;" class="parallax scrolly-invisible no-parallax"></div><!-- PARALLAX BACKGROUND IMAGE -->
+			<div class="container fluid">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="inner-header wform">
+							<div class="job-search-sec">
+								<div class="job-search">
+									<h4>Explore current Job Openings</h4>
+								</div><!-- Tags Bar -->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<div class="block remove-top">
+			<div class="container">
+				 <div class="row no-gape">
+				 	<aside class="col-lg-12 column">
+						{% csrf_token %}
+						{% for i in form %}
+
+						 <div class="job-list-modern">
+                <div class="job-listings-sec no-border">
+								<div class="job-listing wtabs">
+									<div class="job-title-sec">
+										<div class="c-logo"></div>
+										<h3><a href="#" title="">{{i.jobrole}}</a></h3>
+										<span>Experience Required: {{i.jobexp}}</span>
+										<div class="job-lctn"><i class="la la-map-marker"></i>{{i.joblocation}}</div>
+									</div>
+									<div class="job-style-bx">
+										<span class="job-is ft"><a href="{% url 'apply' id=i.jobid %}" class="btn" type="submit">Apply</a></span>
+										<span class="fav-job"><i class="la la-heart-o"></i></span>
+										<i>Job ID: {{i.jobid}}</i>
+									</div>
+								</div>
+							</div>
+
+							
+						 </div>
+             {% endfor %}
+
+					 </div>
+				 </div>
+			</div>
+		</div>
+	</section>
+
+	<footer class="style3">
+		<div class="block">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-3 column">
+						<div class="widget">
+							<div class="about_widget">
+								<div class="logo">
+									<a href="#" title=""><img src="{% static 'images/resource/logo9.png'%}" alt="" /></a>
+								</div>
+								<span>JET, Thrissur 680000, India.</span>
+								<span>+1 246-345-0695</span>
+								<span>jet@jobhunt.com</span>
+								<div class="social">
+									<a href="#" title=""><i class="fa fa-facebook"></i></a>
+									<a href="#" title=""><i class="fa fa-twitter"></i></a>
+									<a href="#" title=""><i class="fa fa-linkedin"></i></a>
+									<a href="#" title=""><i class="fa fa-pinterest"></i></a>
+									<a href="#" title=""><i class="fa fa-behance"></i></a>
+								</div>
+                <div>
+                  
+                </div>
+							</div><!-- About Widget -->
+						</div>
+					</div>
+				
+					<div class="col-lg-3 column">
+						<div class="widget">
+							<div class="download_widget">
+								<a href="#" title=""><img src="{% static 'images/resource/di.png'%}" alt="" /></a>
+								<a href="#" title=""><img src="{% static 'images/resource/di2.png'%}" alt="" /></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="bottom-line style3">
+			<div class="container">
+				<span>© 2022 Jobhunt All rights reserved. Design by JET</span>
+				<a class="back-top" href="#scrollup" title=""><i class="la la-long-arrow-up"></i></a>
+			</div>
+		</div>
+	</footer>
+
+</div>
+
+<!-- LOGIN POPUP -->
+
+
+<script src="{% static 'js/jquery.min.js'%}" type="text/javascript"></script>
+<script src="{% static 'js/modernizr.js'%}" type="text/javascript"></script>
+<script src="{% static 'js/script.js'%}" type="text/javascript"></script>
+<script src="{% static 'js/bootstrap.min.js'%}" type="text/javascript"></script>
+<script src="{% static 'js/wow.min.js'%}" type="text/javascript"></script>
+<script src="{% static 'js/slick.min.js'%}" type="text/javascript"></script>
+<script src="{% static 'js/parallax.js'%}" type="text/javascript"></script>
+<script src="{% static 'js/select-chosen.js'%}" type="text/javascript"></script>
+<script src="{% static 'js/counter.js'%}" type="text/javascript"></script>
+
+</body>
+
+<!-- Mirrored from creativelayers.net/themes/jobhunt-html/index8.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 03 Jun 2022 15:44:06 GMT -->
+</html>
+

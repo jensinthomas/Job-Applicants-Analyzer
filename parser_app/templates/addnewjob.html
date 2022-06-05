@@ -1,143 +1,241 @@
-<!doctype html>
-{% load static %}
-{% load active %}
-{% load crispy_forms_tags %}<html>
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from creativelayers.net/themes/jobhunt-html/index8.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 03 Jun 2022 15:43:34 GMT -->
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-  body {
-    background-image: url('https://c1.wallpaperflare.com/preview/22/192/837/background-blur-bright-close-up.jpg');
-background-repeat: no-repeat;
-background-size: cover;
-  }
-</style>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<!-- Facebook Cards -->
-<meta property="og:description" content="A fun project to store my learning from each book that I read"/>
-<meta property="og:url" content=""/>
-<meta property="og:image" content="{% static 'images/logomark.png' %}"/>
-<meta property="og:type" content="website"/>
-<meta property="og:site_name" content="Bookworm"/>
-
-<!-- Twitter Cards -->
-<meta name="twitter:card" content="summary">
-<meta name="twitter:site" content="@omkarpathak27">
-<meta name="twitter:creator" content="Omkar Pathak">
-<meta name="twitter:title" content= "Bookworm">
-<meta name="twitter:description" content="A fun project to store my learning from each book that I read">
-<meta name="twitter:creator" content="Omkar Pathak">
-<meta name="twitter:image:src" content="{% static 'images/logomark.png' %}">
-<meta name="twitter:domain" content="https://www.omkarpathak.in">
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<!-- Google Font -->
-<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" type="text/css" media="all" />
-<link rel="stylesheet" href="{% static 'css/custom.css' %}">
-<link rel="shortcut icon" href="{% static 'images/logomarkv2.ico' %}">
-<title>New Job</title>
-
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Job Hunt</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="author" content="pc" >
+  {% load static %}
+	<!-- Styles -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-grid.css'%}" />
+	<link rel="stylesheet" href="{% static 'css/icons.css'%}">
+	<link rel="stylesheet" href="{% static 'css/animate.min.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/responsive.css'%}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/chosen.css'%}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/colors/colors.css'%}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css'%}" />
+<link rel="stylesheet" href="{% static '../../../maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'%}" />
+	
 </head>
-{% for msg in messages %}
-        <script>
-            window.onload = function(){
-                alert('{{msg}}')
-            }
-        </script>
-    {% endfor %}
-    <body>
+<body>
 
-      <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-    
-            </div>
-            <div class="col-md-6 mt-3">
-                <div class="card p-3">
-                  <form action="newjob" method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                        <div class="row">
-    
-                            <div class="col-md-12 mt-3">
-                                <center>                <h2>New Job Vaccancy</h>
-                                </center><br>
-                            </div>
-                            
-                            <div class="col-md-12 mt-3">
-                              <label for="">Job ID: </label>
-                              <input type="text" name="jobid" class="form-control" required />
-                            </div>
-                
-                            <div class="col-md-12 mt-3">
-                              <label for="">Job Name: </label>
-                              <select class="form-select" for="jobrole"name="jobrole" required >
-                                <option value="Python Developer">Python Developer</option>
-                                <option  value="Java Developer">Java Developer</option>
-                                <option  value="Sales Manager">Sales Manager</option>
-                                <option  value="HR Excecutive">HR Excecutive</option>
-                                <option  value="Trainer">Trainer</option>
-                                <option  value="Technician">Technician</option>
-                              </select>    
-                            </div>
-                            <div class="col-md-12 mt-3">
-                              <label>Job Creation Date:</label>
-                              <input type="date" id="date" name="jobdate" required/>
-                            </div>
-                            <div class="col-md-12 mt-3">
-                              <label>Experience:</label>
-                              <input type="number"  name="jobexp" required/>
-                            </div>
-                            <div class="col-md-12 mt-3">
-                              <label for="">Job Location: </label>
-                              <select class="form-select" for="joblocation"name="joblocation" required >
-                                  <option value="Bangalore">Bangalore</option>
-                                  <option  value="Chennai">Chennai</option>
-                                  <option  value="Pune">Pune</option>
-                                  <option  value="Kochi">Kochi</option>
-                                  <option  value="Hyderabad">Hyderabad</option>
-                                </select>                                            
-                            </div>
-                             <div class="col-md-12 mt-3">
-                              <label for="">Job Personality 1: </label>
-                              <select class="form-select" for="p1" name="p1" required >
-                                <option value="Dependable">Dependable</option>
-                                <option  value="Serious">Serious</option>
-                                <option  value="Responsible">Responsible</option>
-                                <option  value="Lively">Lively</option>
-                                <option  value="Extraverted">Extraverted</option>
-                              </select>
-                            </div>
-                            <div class="col-md-12 mt-3">
-                              <label for="">Job Personality 2: </label>
-                              <select class="form-select" for="p2" name="p2" required >
-                                  <option value="Dependable">Dependable</option>
-                                  <option  value="Serious">Serious</option>
-                                  <option  value="Responsible">Responsible</option>
-                                  <option  value="Lively">Lively</option>
-                                  <option  value="Extraverted">Extraverted</option>
-                                </select>
-                            </div> 
-                            <div class="col-md-12 mt-3">
-                              <label for="">Upload Description: </label>
-                              <input type="file"  name="jobdescription" required /> <br /><br />
-                            </div>
-                            <div class="col-md-12 mb-3 mt-3">
-                              <button type="submit" class="btn btn-primary w-100" onclick="check()">Submit</button>
-                            </div>
-                        </div>
-                    </form>
+<div class="page-loading">
+	<img src="images/loader.gif" alt="" />
+	<span>Skip Loader</span>
+</div>
+
+<div class="theme-layout" id="scrollup">
+	
+	<div class="responsive-header five">
+		<div class="responsive-menubar">
+			<div class="res-logo"><a href="index.html" title=""><img src="{% static 'images/resource/logo8.png'%}" alt="" /></a></div>
+			<div class="menu-resaction">
+				<div class="res-openmenu">
+					<img src="{% static 'images/icon.png'%}" alt="" /> Menu
+				</div>
+				<div class="res-closemenu">
+					<img src="{% static 'images/icon2.png'%}" alt="" /> Close
+				</div>
+			</div>
+		</div>
+		<div class="responsive-opensec">
+			<div class="btn-extars">
+				<a href="#" title="" class="post-job-btn"><i class="la la-plus"></i>Post Jobs</a>
+				<ul class="account-btns">
+					<li class="signup-popup"><a title=""><i class="la la-key"></i> Sign Up</a></li>
+					<li class="signin-popup"><a title=""><i class="la la-external-link-square"></i> Login</a></li>
+				</ul>
+			</div><!-- Btn Extras -->
+			<form class="res-search">
+				<input type="text" placeholder="Job title, keywords or company name" />
+				<button type="submit"><i class="la la-search"></i></button>
+			</form>
+			<div class="responsivemenu">
+				<ul>
+          
+          <li class="menu-item">
+            <a href="adminhome" title="">Recruiter Home</a>
+          </li>
+          
+        </ul>
+			</div>
+		</div>
+	</div>
+	
+	<header class="style5">
+		<div class="menu-sec">
+			<div class="container fluid">
+				<nav>
+					<ul>
+						<li class="menu-item">
+              <a href="adminhome" title="">Recruiter Home</a>
+            </li>
+						
+					</ul>
+				</nav><!-- Menus -->
+				<div class="logo">
+					<a href="index.html" title=""><img src="{% static 'images/resource/logo8.png'%}" alt="" /></a>
+				</div><!-- Logo -->
+				<div class="btn-extars">
+					<ul class="account-btns">
+            <li class="signout-popup"><a href="logout"><i class="la la-external-link-square"></i> Logout</a></li>
+
+						</ul>
+				</div><!-- Btn Extras -->
+			</div>
+		</div>
+	</header>
+
+	<section>
+		<div class="block no-padding  gray">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="inner2">
+							<div class="inner-title2">
+								<h3>Add New Job</h3>
+							</div>
+		
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<div class="block remove-bottom">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="account-popup-area signup-popup-box static">
+							<div class="account-popup">
+								
+								<form action="newjob" method="post" enctype="multipart/form-data">
+									{% csrf_token %}									
+                  <div class="cfield">
+										<input type="text"  name="jobid" placeholder="Job ID" required />
+										<i class="la la-name"></i>
+									</div>
+									<div class="cfield">
+										<input type="text" placeholder="Job Creation Date" id="date" name="jobdate" required/>
+										<i class="la la-date"></i>
+									</div>
+									<div class="cfield">
+										<input type="number" placeholder="Experience" name="jobexp" required/>
+									</div>
+									<div class="dropdown-field">
+										<select data-placeholder="Job Name" class="chosen">
+											<option value="Python Developer">Python Developer</option>
+											<option  value="Java Developer">Java Developer</option>
+											<option  value="Sales Manager">Sales Manager</option>
+											<option  value="HR Excecutive">HR Excecutive</option>
+											<option  value="Trainer">Trainer</option>
+											<option  value="Technician">Technician</option>
+										</select> 
+									</div>
+									<div class="dropdown-field">
+										<select data-placeholder="Job Personality 1" class="chosen" for="p1" name="p1" required >
+											<option value="Dependable">Dependable</option>
+											<option  value="Serious">Serious</option>
+											<option  value="Responsible">Responsible</option>
+											<option  value="Lively">Lively</option>
+											<option  value="Extraverted">Extraverted</option>
+										</select>
+									</div>
+									<div class="dropdown-field">
+										<select data-placeholder="Job Personality 2" class="chosen" for="p2" name="p2" required >
+											<option value="Dependable">Dependable</option>
+											<option  value="Serious">Serious</option>
+											<option  value="Responsible">Responsible</option>
+											<option  value="Lively">Lively</option>
+											<option  value="Extraverted">Extraverted</option>
+										</select>
+									</div>
+                  <i>Upload Description:</i>
+
+									<div class="cfield">
+										<input type="file" placeholder="Upload Description:" name="jobdescription" required /> <br /><br />
+									</div>
+									<button type="submit" onclick="check()">Submit</button>
+								</form>
+								
+							</div>
+						</div><!-- SIGNUP POPUP -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<footer class="style3">
+		<div class="block">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-3 column">
+						<div class="widget">
+							<div class="about_widget">
+								<div class="logo">
+									<a href="#" title=""><img src="{% static 'images/resource/logo9.png'%}" alt="" /></a>
+								</div>
+								<span>JET, Thrissur 680000, India.</span>
+								<span>+1 246-345-0695</span>
+								<span>jet@jobhunt.com</span>
+								<div class="social">
+									<a href="#" title=""><i class="fa fa-facebook"></i></a>
+									<a href="#" title=""><i class="fa fa-twitter"></i></a>
+									<a href="#" title=""><i class="fa fa-linkedin"></i></a>
+									<a href="#" title=""><i class="fa fa-pinterest"></i></a>
+									<a href="#" title=""><i class="fa fa-behance"></i></a>
+								</div>
+                <div>
+                  
                 </div>
-            </div>
-            <div class="col-md-3">
-              <a href="adminhome"> <button class="btn-primary">Back</button></a>
+							</div><!-- About Widget -->
+						</div>
+					</div>
+				
+					<div class="col-lg-3 column">
+						<div class="widget">
+							<div class="download_widget">
+								<a href="#" title=""><img src="{% static 'images/resource/di.png'%}" alt="" /></a>
+								<a href="#" title=""><img src="{% static 'images/resource/di2.png'%}" alt="" /></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="bottom-line style3">
+			<div class="container">
+				<span>© 2022 Jobhunt All rights reserved. Design by JET</span>
+				<a class="back-top" href="#scrollup" title=""><i class="la la-long-arrow-up"></i></a>
+			</div>
+		</div>
+	</footer>
 
-            </div>
-        </div>
-    </div>
-  
-  
-    </body>
-    </html>
+</div>
+
+<!-- LOGIN POPUP -->
+
+
+<script src="{% static 'js/jquery.min.js'%}" type="text/javascript"></script>
+<script src="{% static 'js/modernizr.js'%}" type="text/javascript"></script>
+<script src="{% static 'js/script.js'%}" type="text/javascript"></script>
+<script src="{% static 'js/bootstrap.min.js'%}" type="text/javascript"></script>
+<script src="{% static 'js/wow.min.js'%}" type="text/javascript"></script>
+<script src="{% static 'js/slick.min.js'%}" type="text/javascript"></script>
+<script src="{% static 'js/parallax.js'%}" type="text/javascript"></script>
+<script src="{% static 'js/select-chosen.js'%}" type="text/javascript"></script>
+<script src="{% static 'js/counter.js'%}" type="text/javascript"></script>
+
+</body>
+
+<!-- Mirrored from creativelayers.net/themes/jobhunt-html/index8.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 03 Jun 2022 15:44:06 GMT -->
+</html>
+

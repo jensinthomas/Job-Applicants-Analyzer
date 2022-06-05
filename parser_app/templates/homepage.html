@@ -1,59 +1,437 @@
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html>
 
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<title>Resume Analyser</title>
-<style>
-    body {
-        background-image: url('https://img.freepik.com/free-photo/creative-flat-lay-design-workspace-desk-with-laptop-alarm-clock-blank-notebook-smartphone-stationery-with-copy-space-background_1150-45600.jpg?w=2000');
-        background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-      }
-</style>
+<!-- Mirrored from creativelayers.net/themes/jobhunt-html/index8.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 03 Jun 2022 15:43:34 GMT -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Job Hunt</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="author" content="pc" >
+  {% load static %}
+	<!-- Styles -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-grid.css'%}" />
+	<link rel="stylesheet" href="{% static 'css/icons.css'%}">
+	<link rel="stylesheet" href="{% static 'css/animate.min.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/responsive.css'%}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/chosen.css'%}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/colors/colors.css'%}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css'%}" />
+<link rel="stylesheet" href="{% static '../../../maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'%}" />
+	
+</head>
 <body>
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-          <ul class="nav navbar-nav">
-            <li><a href="aboutus">About Us</a></li>
-            <li><a href="gallery">Gallery</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="signuppage"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href="login_page"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
-            <li><a href="adlogin_page"><span class="glyphicon glyphicon-log-in"></span>Admin Login</a></li>
-          </ul>
-        </div>
-      </nav>
-      <center>
-        <br>
-        {% for msg in messages %}
-        <script>
-            window.onload = function(){
-                alert('{{msg}}')
-            }
-        </script>
-    {% endfor %} <br>
-      </center>
 
-      <center><br>
-        <div class="w3-container">
-            <div class="w3-card-4" style="width:50%;">
-                <header class="w3-container w3-grey">
-                  <h1>Interested to join our team?</h1>
-                </header>
-                <div class="w3-container"><br>
-                  <p style="font-size:20px;">We enable career success by providing opportunities to thrive. We foster an inclusive workforce and embrace a shared set of core values based on character, competitive spirit, relationships, and giving back to the communities where we live and work.</p>
-                  <p style="font-size:20px;">To join our recruitment pool please Signup and complete our short Personality test</p>
+<div class="page-loading">
+	<img src="images/loader.gif" alt="" />
+	<span>Skip Loader</span>
+</div>
+
+<div class="theme-layout" id="scrollup">
+	
+	<div class="responsive-header five">
+		<div class="responsive-menubar">
+			<div class="res-logo"><a href="index.html" title=""><img src="{% static 'images/resource/logo8.png'%}" alt="" /></a></div>
+			<div class="menu-resaction">
+				<div class="res-openmenu">
+					<img src="{% static 'images/icon.png'%}" alt="" /> Menu
+				</div>
+				<div class="res-closemenu">
+					<img src="{% static 'images/icon2.png'%}" alt="" /> Close
+				</div>
+			</div>
+		</div>
+		<div class="responsive-opensec">
+			<div class="btn-extars">
+				<a href="#" title="" class="post-job-btn"><i class="la la-plus"></i>Post Jobs</a>
+				<ul class="account-btns">
+					<li class="signup-popup"><a title=""><i class="la la-key"></i> Sign Up</a></li>
+					<li class="signin-popup"><a title=""><i class="la la-external-link-square"></i> Login</a></li>
+				</ul>
+			</div><!-- Btn Extras -->
+			<form class="res-search">
+				<input type="text" placeholder="Job title, keywords or company name" />
+				<button type="submit"><i class="la la-search"></i></button>
+			</form>
+			<div class="responsivemenu">
+				<ul>
+          <li class="menu-item">
+            <a href="mainhome" title="">Home</a>
+          
+          </li>
+          <li class="menu-item">
+            <a href="aboutus" title="">About Us</a>
+            
+          </li>
+          <li class="menu-item">
+            <a href="gallery" title="">Contact</a>
+            
+          </li>
+          <li class="menu-item">
+            <a href="login_page" title="">Job</a>
+            
+          </li>
+          
+        </ul>
+			</div>
+		</div>
+	</div>
+	
+	<header class="style5">
+		<div class="menu-sec">
+			<div class="container fluid">
+				<nav>
+					<ul>
+						<li class="menu-item">
+							<a href="mainhome" title="">Home</a>
+						
+						</li>
+						<li class="menu-item">
+							<a href="aboutus" title="">About Us</a>
+							
+						</li>
+						<li class="menu-item">
+							<a href="gallery" title="">Contact</a>
+							
+						</li>
+						<li class="menu-item">
+							<a href="login_page" title="">Job</a>
+							
+						</li>
+						
+					</ul>
+				</nav><!-- Menus -->
+				<div class="logo">
+					<a href="index.html" title=""><img src="{% static 'images/resource/logo8.png'%}" alt="" /></a>
+				</div><!-- Logo -->
+				<div class="btn-extars">
+					<ul class="account-btns">
+						<li class="signup-popup"><a href="signuppage"><i class="la la-key"></i> Sign Up</a></li>
+						<li class="signin-popup"><a href="login_page"><i class="la la-external-link-square"></i> Login</a></li>
+					</ul>
+				</div><!-- Btn Extras -->
+			</div>
+		</div>
+	</header>
+
+	<section>
+		<div class="block double-gap-top double-gap-bottom">
+			<div data-velocity="-.1" style="background: url('{% static "images/resource/bg3.jpg"%}') repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible layer blackish"></div><!-- PARALLAX BACKGROUND IMAGE -->
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="form-location-sec">
+							<h3><strong>Great Job</strong> Greater Talent</h3>
+						
+								
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<div class="block">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="heading">
+							<h2>Popular Categories</h2>
+						</div><!-- Heading -->
+						<div class="cat-sec style2">
+							<div class="row">
+								<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+									<div class="p-category style2 gray">
+										<a href="#" title="">
+											<i class="la la-code"></i>
+											<span>Developers</span>
+										</a>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+									<div class="p-category style2 gray">
+										<a href="#" title="">
+											<i class="la la-graduation-cap"></i>
+											<span>Education Training</span>
+										</a>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+									<div class="p-category style2 gray">
+										<a href="#" title="">
+											<i class="la la-line-chart "></i>
+											<span>Accounting / Finance</span>
+										</a>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+									<div class="p-category style2 gray">
+										<a href="#" title="">
+											<i class="la la-users"></i>
+											<span>Human Resource</span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<div class="block no-padding">
+			<div class="container fluid">
+				<div class="row">
+					<div class="col-lg-6">
+						<div data-velocity="-.1" style="background: url('{% static "images/resource/parallax1.jpg"%}') repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible layer blackish"></div><!-- PARALLAX BACKGROUND IMAGE -->
+						<div class="who-am">
+							<h3>I AM RECRUITER!</h3>
+							<p>One of our One of our jobs has some kind of flexibility jobs has some kind of flexibility option such as telecommuting, a part-time schedule or a flexible or flextime.</p>
+							<a href="newjob" title="">Post new job</a>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div data-velocity="-.1" style="background: url('{% static "images/resource/parallax2.jpg"%}') repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible layer color green2"></div><!-- PARALLAX BACKGROUND IMAGE -->
+						<div class="who-am flip">
+							<h3>I AM JOBSEEKER!</h3>
+							<p>One of our One of our jobs has some kind of flexibility jobs has some kind of flexibility option such as telecommuting, a part-time schedule or a flexible or flextime.</p>
+							<a href="login_page" title="">Browse Jobs</a>
+						</div>
+					</div>
+				</div>
+			</div>	
+		</div>
+	</section>
+
+	<section>
+		<div class="block">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="heading">
+							<h2>How It Works</h2>
+							<span>Each month, more than 7 million Jobhunt turn to website in their search for work, making over <br />160,000 applications every day.
+							</span>
+						</div><!-- Heading -->
+						<div class="how-to-sec style2 lines">
+							<div class="how-to">
+								<span class="how-icon"><i class="la la-user"></i></span>
+								<h3>Register an account</h3>
+								<p>Post a job to tell us about your project. We'll quickly match you with the right freelancers.</p>
+							</div>
+							<div class="how-to">
+								<span class="how-icon"><i class="la la-file-archive-o"></i></span>
+								<h3>Specify & search your job</h3>
+								<p>Browse profiles, reviews, and proposals then interview top candidates. </p>
+							</div>
+							<div class="how-to">
+								<span class="how-icon"><i class="la la-list"></i></span>
+								<h3>Apply for job</h3>
+								<p>Use the Upwork platform to chat, share files, and collaborate from your desktop or on the go.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<div class="block gray">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="heading">
+							<h2>Projob Site Stats</h2>
+							<span>Here we list our site stats and how many people we’ve helped find a job and companies have found <br />recruits. It's a pretty awesome stats area!</span>
+						</div><!-- Heading -->
+						<div class="stats-sec style2">
+							<div class="row">
+								<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+									<div class="stats">
+										<span>18</span>
+										<h5>Jobs Posted</h5>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+									<div class="stats">
+										<span>38</span>
+										<h5>Jobs Filled</h5>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+									<div class="stats">
+										<span>67</span>
+										<h5>Companies</h5>
+									</div>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+									<div class="stats">
+										<span>92</span>
+										<h5>Members</h5>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<div class="block">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8 column">
+						<div class="heading left">
+							<h2>Frequently Asked Questions?</h2>
+						</div><!-- Heading -->
+						<div id="toggle-widget" class="experties">
+							<h2>How We Share Information?</h2>
+							<div class="content">
+								<p>Book your car, all you need is a credit or debit card. When you pick the car up, you’ll need Different car hire companies have different requirements, so please make sure you check the car’s terms and conditions as well.</p>
+							</div>
+							<h2>In Which We Explain How And With Whom We Share Your Information?</h2>
+							<div class="content">
+								<p>Book your car, all you need is a credit or debit card. When you pick the car up, you’ll need Different car hire companies have different requirements, so please make sure you check the car’s terms and conditions as well.</p>
+							</div>
+							<h2>Special Provisions Applicable To Employer?</h2>
+							<div class="content">
+								<p>Book your car, all you need is a credit or debit card. When you pick the car up, you’ll need Different car hire companies have different requirements, so please make sure you check the car’s terms and conditions as well.</p>
+							</div>
+							<h2>How Do I Find Contact Information For Harvard Students, Faculty?</h2>
+							<div class="content">
+								<p>Book your car, all you need is a credit or debit card. When you pick the car up, you’ll need Different car hire companies have different requirements, so please make sure you check the car’s terms and conditions as well.</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 column">
+						<div class="reviews-sec" id="reviews">
+							<div class="col-lg-6">
+								<div class="reviews style2">
+									<img src="{% static 'images/resource/r1.jpg'%}" alt="" />
+									<h3>Augusta Silva <span>Web designer</span></h3>
+									<p>Without JobHunt i’d be homeless, they found me a job and got me sorted out quickly with everything!  Can’t quite believe the service level that they offer!</p>
+								</div><!-- Reviews -->
+							</div>
+							<div class="col-lg-6">
+								<div class="reviews style2">
+									<img src="{% static 'images/resource/r2.jpg'%}" alt="" />
+									<h3>Ali Tufan <span>Web designer</span></h3>
+									<p>Without JobHunt i’d be homeless, they found me a job and got me sorted out quickly with everything!  Can’t quite believe the service level that they offer!</p>
+								</div><!-- Reviews -->
+							</div>
+							<div class="col-lg-6">
+								<div class="reviews style2">
+									<img src="{% static 'images/resource/r1.jpg'%}" alt="" />
+									<h3>Augusta Silva <span>Web designer</span></h3>
+									<p>Without JobHunt i’d be homeless, they found me a job and got me sorted out quickly with everything!  Can’t quite believe the service level that they offer!</p>
+								</div><!-- Reviews -->
+							</div>
+							<div class="col-lg-6">
+								<div class="reviews style2">
+									<img src="{% static 'images/resource/r2.jpg'%}" alt="" />
+									<h3>Ali Tufan <span>Web designer</span></h3>
+									<p>Without JobHunt i’d be homeless, they found me a job and got me sorted out quickly with everything!  Can’t quite believe the service level that they offer!</p>
+								</div><!-- Reviews -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<div class="block no-padding">
+			<div data-velocity="-.1" style="background: url(images/resource/parallax1.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible layer color green2"></div><!-- PARALLAX BACKGROUND IMAGE -->
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-13 column">
+						<div class="detailbar">
+							<h3>Are You Hiring?</h3>
+							<p>Find everything you need to post a job and receive the best candidates by visiting our Employer website. We offer small business and enterprise options.</p>
+						</div>
+					</div>
+					<div class="col-lg-4 column">
+						<div class="detalbr-mkp">
+							<img src="images/resource/mockup4.png" alt="" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<footer class="style3">
+		<div class="block">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-3 column">
+						<div class="widget">
+							<div class="about_widget">
+								<div class="logo">
+									<a href="#" title=""><img src="images/resource/logo9.png" alt="" /></a>
+								</div>
+								<span>JET, Thrissur 680000, India.</span>
+								<span>+1 246-345-0695</span>
+								<span>jet@jobhunt.com</span>
+								<div class="social">
+									<a href="#" title=""><i class="fa fa-facebook"></i></a>
+									<a href="#" title=""><i class="fa fa-twitter"></i></a>
+									<a href="#" title=""><i class="fa fa-linkedin"></i></a>
+									<a href="#" title=""><i class="fa fa-pinterest"></i></a>
+									<a href="#" title=""><i class="fa fa-behance"></i></a>
+								</div>
+                <div>
+                  
                 </div>
-                <footer class="w3-container w3-hover-shadow w3-blue">
-                    <a href="login_page"><h3>Continue</h3></a>
-                </footer>
-                
-                </div>
-            </div>
-      </center>
-    
+							</div><!-- About Widget -->
+						</div>
+					</div>
+				
+					<div class="col-lg-3 column">
+						<div class="widget">
+							<div class="download_widget">
+								<a href="#" title=""><img src="{% static 'images/resource/di.png'%}" alt="" /></a>
+								<a href="#" title=""><img src="{% static 'images/resource/di2.png'%}" alt="" /></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="bottom-line style3">
+			<div class="container">
+				<span>© 2022 Jobhunt All rights reserved. Design by JET</span>
+				<a class="back-top" href="#scrollup" title=""><i class="la la-long-arrow-up"></i></a>
+			</div>
+		</div>
+	</footer>
+
+</div>
+
+<!-- LOGIN POPUP -->
+
+
+<script src="{% static 'js/jquery.min.js'%}" type="text/javascript"></script>
+<script src="{% static 'js/modernizr.js'%}" type="text/javascript"></script>
+<script src="{% static 'js/script.js'%}" type="text/javascript"></script>
+<script src="{% static 'js/bootstrap.min.js'%}" type="text/javascript"></script>
+<script src="{% static 'js/wow.min.js'%}" type="text/javascript"></script>
+<script src="{% static 'js/slick.min.js'%}" type="text/javascript"></script>
+<script src="{% static 'js/parallax.js'%}" type="text/javascript"></script>
+<script src="{% static 'js/select-chosen.js'%}" type="text/javascript"></script>
+<script src="{% static 'js/counter.js'%}" type="text/javascript"></script>
+
 </body>
+
+<!-- Mirrored from creativelayers.net/themes/jobhunt-html/index8.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 03 Jun 2022 15:44:06 GMT -->
+</html>
+
